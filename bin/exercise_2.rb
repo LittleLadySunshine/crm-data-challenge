@@ -1,27 +1,25 @@
 require_relative '../data/crm'
 require 'pp'
 
-result = []
+employment_list = []
 
-CRM[:companies].each do |company|
+CRM[:people].each do |person|
 
-  employees_array = []
+    if person[:employments] != []
 
-  CRM[:people].each do |person|
-    person[:employments].each do |employment|
-      if employment[:company_id] == company[:id]
-        employee = {id: person[:id], first_name: person[:first_name],
-          last_name: person[:last_name], title: employment[:title]}
-          employees_array << employee
-        end
-      end
+  person[:employments].each do |employment|
+     employment_info = {   
+      [:person_id]
+      [:person_first_name]
+      [:person_last_name]
+      [:title]}
+
+  CRM[:companies].each do |company|
+
+    if employment[:company_id] == company[:id]
+      employment_info[:company_id] = company[:id]
+      emplyment_info[:company_name] = company[:name]
     end
-    result << {name: company[:name], employees: employees_array}
-  end
-  pp result
-
-
-
 
 ## Challenge #2 - all employments
 
